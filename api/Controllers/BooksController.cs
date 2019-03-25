@@ -11,9 +11,9 @@ namespace Fisher.Bookstore.Api.Controllers
     [ApiController]
     public class BooksController : ControllerBase
     {
-        private readonly BookstoreContext db;
+        private readonly Data.BookstoreContext db;
 
-        public BooksController(BookstoreContext db)
+        public BooksController(Data.BookstoreContext db)
         {
             this.db = db;
             if (this.db.Books.Count() == 0)
