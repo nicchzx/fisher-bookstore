@@ -13,35 +13,7 @@ namespace Fisher.Bookstore.Api.Controllers
     {
         private readonly Data.BookstoreContext db;
 
-        public BooksController(Data.BookstoreContext db)
-        {
-            this.db = db;
-            if (this.db.Books.Count() == 0)
-            {
-                this.db.Books.Add(new Book()
-                {
-                    Id = 1,
-                    Title = "Design Patterns",
-                    Author = "Erich Gamma",
-                    ISBN = "978-0201633610"
-                });
-                this.db.Books.Add(new Book()
-                {
-                    Id = 2,
-                    Title = "Continuous Delivery",
-                    Author = "Jez Humble",
-                    ISBN = "978-0321601919"
-                });
-                this.db.Books.Add(new Book()
-                {
-                    Id = 3,
-                    Title = "The DevOps Handbook",
-                    Author = "Gene Kim",
-                    ISBN = "978-1942788003"
-                });
-            }
-            this.db.SaveChanges();
-        }
+        public BooksController(Data.BookstoreContext db) => this.db = db;
 
         [HttpGet]
         public IActionResult Get()
