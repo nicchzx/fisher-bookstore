@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Fisher.Bookstore.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Fisher.Bookstore.Api.Controllers
 {
@@ -36,6 +37,7 @@ namespace Fisher.Bookstore.Api.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult Post([FromBody]Book book)
         {
             if (book==null)
@@ -48,8 +50,9 @@ namespace Fisher.Bookstore.Api.Controllers
 
             return CreatedAtRoute("GetBook", new { id = book.Id }, book);
         }
-
+        
         [HttpPut("{id}")]
+        [Authorize]
         public IActionResult Put(int id, [FromBody]Book book)
         {
             //validate the incoming book
@@ -73,6 +76,7 @@ namespace Fisher.Bookstore.Api.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public IActionResult Delete(int id)
         {
             var book = db.Books.FirstOrDefault(b => b.Id == id);
