@@ -52,6 +52,7 @@ namespace Fisher.Bookstore.Api.Controllers
         }
         
         [HttpPut("{id}")]
+        [Authorize]
         public IActionResult Put(int id, [FromBody]Book book)
         {
             //validate the incoming book
