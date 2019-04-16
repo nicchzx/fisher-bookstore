@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Book } from '../book';
+import { BooksService } from '../books.service';
 
 @Component({
   selector: 'app-books',
@@ -7,23 +8,15 @@ import { Book } from '../book';
   styleUrls: ['./books.component.css']
 })
 export class BooksComponent implements OnInit {
+  books: Book[];
 
-  books: Book[] = [
-    {
-      id: 1,
-      title: "Ready Player One",
-      author: "Ernest Cline"
-    },
-    {
-      id: 2,
-      title: "Catch 22",
-      author: "Joseph Heller"
-    }
-  ];
-
-  constructor() { }
+  constructor(private booksService: BooksService) {}
 
   ngOnInit() {
+    this.getBooks();
   }
 
+  getBooks() {
+    this.booksService.getBooks().subscribe(books => (this.books = books));
+  }
 }

@@ -16,13 +16,13 @@ namespace Fisher.Bookstore.Api.Controllers
 
         public BooksController(Data.BookstoreContext db) => this.db = db;
 
-        [HttpGet]
-        public IActionResult Get()
+        [HttpGet()]
+        public IActionResult GetBooks()
         {
             return Ok(db.Books);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetBook")]
         public IActionResult GetBook(int id)
         {
             //try to find the correct book
@@ -52,7 +52,6 @@ namespace Fisher.Bookstore.Api.Controllers
         }
         
         [HttpPut("{id}")]
-        [Authorize]
         public IActionResult Put(int id, [FromBody]Book book)
         {
             //validate the incoming book
